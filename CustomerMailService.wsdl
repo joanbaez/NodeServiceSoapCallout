@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="CustomerMailService" targetNamespace="http://mx.altan/CustomersMail/v1" xmlns:custmail="http://mx.altan/CustomersMail/v1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mx.altan/CustomersMail/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="CustomerMailService" targetNamespace="http://mx.altan/CustomersMail/v1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mx.altan/CustomersMail/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
   	<wsdl:types>
-		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mx.altan/CustomersMail/v1" version="1.0" xmlns:tns="http://mx.altan/CustomersMail/v1">
-			<xsd:element name="getCustomerEmailRequest" type="tns:getCustomerEmailReq"/>	
-			<xsd:element name="getCustomerEmailResponse" type="tns:getCustomerEmailRes"/>
+		<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mx.altan/CustomersMail/v1">	
 			
-			<xsd:complexType name="getCustomerEmailReq">
-				<xsd:sequence>
-					<xsd:element name="idCustomer" type="xsd:long"/>
-				</xsd:sequence>
-			</xsd:complexType>
-			
-			<xsd:complexType name="getCustomerEmailRes">
-				<xsd:sequence>
-					<xsd:element minOccurs="0" name="email" type="xsd:string"/>
-				</xsd:sequence>
-			</xsd:complexType>
+			<xsd:element name="getCustomerEmailReq">	
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="idCustomer" type="xsd:long"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getCustomerEmailResp">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="0" name="email" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
 		</xsd:schema>
     </wsdl:types>
-
+	
 	<wsdl:message name="getCustomerEmailRequest">
-		<wsdl:part element="custmail:getCustomerEmailRequest" name="parameters">
+	<wsdl:part element="tns:getCustomerEmailReq" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
 	<wsdl:message name="getCustomerEmailResponse">
-		<wsdl:part element="custmail:getCustomerEmailResponse" name="parameters">
+		<wsdl:part element="tns:getCustomerEmailResp" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
 	
@@ -48,9 +49,6 @@
 			<wsdl:output>
                 <soap:body use="literal"/>
             </wsdl:output>
-            <wsdl:fault name="fault">
-        <soap:fault name="fault" use="literal"/>
-      </wsdl:fault>
         </wsdl:operation>
     </wsdl:binding>
 
